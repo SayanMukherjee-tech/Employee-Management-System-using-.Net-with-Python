@@ -596,7 +596,7 @@ const uiService = {
         </div>
         <div class="col-6">
           <div class="text-muted small fw-bold text-uppercase">Annual Salary</div>
-          <div class="text-primary fw-bold">₹${(emp.salary / 100000).toFixed(2)} LPA</div>
+          <div class="text-primary fw-bold">${this.formatCurrency(emp.salary || 0)}</div>
         </div>
         <div class="col-6">
           <div class="text-muted small fw-bold text-uppercase">Join Date</div>

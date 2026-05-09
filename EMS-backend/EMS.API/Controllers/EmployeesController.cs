@@ -75,7 +75,7 @@ namespace EMS.API.Controllers
             try
             {
                 await _employeeService.UpdateAsync(id, dto);
-                return Ok();
+                return NoContent();
             }
             catch (Exception ex)
             {
@@ -92,7 +92,7 @@ namespace EMS.API.Controllers
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             await _employeeService.DeleteAsync(id);
-            return Ok();
+            return NoContent();
         }
     }
 }
