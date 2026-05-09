@@ -125,7 +125,9 @@ namespace EMS.API.Services
                 Department = e.Department,
                 Role = e.Role,
                 Status = e.Status,
-                JoinDate = e.JoinDate
+                JoinDate = e.JoinDate,
+                Phone = e.Phone,
+                Salary = e.Salary
             };
         }
 
@@ -174,6 +176,8 @@ namespace EMS.API.Services
             existing.Role = dto.Role;
             existing.Status = dto.Status;
             existing.JoinDate = dto.JoinDate;
+            existing.Phone = dto.Phone;
+            existing.Salary = dto.Salary;
             existing.UpdatedAt = DateTime.UtcNow;
 
             await _repository.UpdateAsync(existing);

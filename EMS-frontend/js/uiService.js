@@ -9,8 +9,20 @@ const uiService = {
   
   formatCurrency(amount) {
     const num = parseFloat(amount);
-    if (isNaN(num)) return '₹0';
-    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(num);
+    if (isNaN(num) || num === 0) return '₹0 LPA';
+    
+    // For LPA (Lakhs Per Annum)
+    if (num >= 100000) {
+      const lpa = (num / 100000).toFixed(2);
+      return `₹${lpa} LPA`;
+    }
+    
+    return new Intl.NumberFormat('en-IN', { 
+      style: 'currency', 
+      currency: 'INR', 
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 0 
+    }).format(num);
   },
 
   renderSignup() {
@@ -584,7 +596,7 @@ const uiService = {
         </div>
         <div class="col-6">
           <div class="text-muted small fw-bold text-uppercase">Annual Salary</div>
-          <div class="text-primary fw-bold">${this.formatCurrency(emp.salary)}</div>
+          <div class="text-primary fw-bold">₹${(emp.salary / 100000).toFixed(2)} LPA</div>
         </div>
         <div class="col-6">
           <div class="text-muted small fw-bold text-uppercase">Join Date</div>
