@@ -92,6 +92,13 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+// Automatically apply migrations and create database
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -103,4 +110,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run("http://localhost:5000");
+app.Run();
